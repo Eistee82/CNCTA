@@ -2,7 +2,7 @@
 // @name            WarChiefs - Tiberium Alliances Combat Simulator
 // @description     Combat Simulator used to plan and strategize attack before going into battle.
 // @author          Eistee
-// @version         13.07.14
+// @version         13.07.23
 // @namespace       http*://*.alliances.commandandconquer.com/*
 // @include         http*://*.alliances.commandandconquer.com/*
 // @require         http://usocheckup.redirectme.net/165888.js
@@ -1411,6 +1411,7 @@
                     simulateStats: function () {
                         var city = ClientLib.Data.MainData.GetInstance().get_Cities().get_CurrentCity();
                         if (city != null) {
+                            ClientLib.Vis.VisMain.GetInstance().get_Battleground().Reset();
                             Simulator.getInstance().isSimulation = true;
                             Simulator.getInstance().saveTempFormation();
                             localStorage['ta_sim_last_city'] = city.get_Id();
@@ -1740,12 +1741,10 @@
                     },
                     getBattleDuration: function (sim) {
                         var battleground = ClientLib.Vis.VisMain.GetInstance().get_Battleground();
-                        sim.Stats.Battle.Duration = battleground.get_BattleDuration();
-                        if (this.isSimStatButtonDisabled) {
-                            setTimeout(function () {
-                                Simulator.StatWindow.getInstance().getBattleDuration(sim);
-                            }, 10);
-                        }
+                        if (battleground.get_Simulation() !== null) sim.Stats.Battle.Duration = battleground.get_Replay().m_CombatSteps * battleground.get_TimePerStep();
+                        else setTimeout(function () {
+                            Simulator.StatWindow.getInstance().getBattleDuration(sim);
+                        }, 10);
                     },
                     getLootFromCurrentCity: function () {
                         try {
