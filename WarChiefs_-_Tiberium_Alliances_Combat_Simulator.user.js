@@ -2,7 +2,7 @@
 // @name            WarChiefs - Tiberium Alliances Combat Simulator
 // @description     Combat Simulator used to plan and strategize attack before going into battle.
 // @author          Eistee
-// @version         13.07.23
+// @version         13.09.19
 // @namespace       http*://*.alliances.commandandconquer.com/*
 // @include         http*://*.alliances.commandandconquer.com/*
 // @require         http://usocheckup.redirectme.net/165888.js
