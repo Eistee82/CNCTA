@@ -2,19 +2,12 @@
 // @name            WarChiefs - Tiberium Alliances Combat Simulator
 // @description     Combat Simulator used to plan and strategize attack before going into battle.
 // @author          Eistee
-// @version         13.09.19
-// @namespace       http*://*.alliances.commandandconquer.com/*
-// @include         http*://*.alliances.commandandconquer.com/*
-// @require         http://usocheckup.redirectme.net/165888.js
-// @icon            http://s3.amazonaws.com/uso_ss/icon/165888/large.png
-// @updateURL       https://userscripts.org/scripts/source/165888.meta.js
-// @downloadURL     https://userscripts.org/scripts/source/165888.user.js
-// @grant           GM_getValue
-// @grant           GM_log
-// @grant           GM_openInTab
-// @grant           GM_registerMenuCommand
-// @grant           GM_setValue
-// @grant           GM_xmlhttpRequest
+// @version         13.09.26
+// @namespace       https://prodgame*.alliances.commandandconquer.com/*/index.aspx*
+// @include         https://prodgame*.alliances.commandandconquer.com/*/index.aspx*
+// @icon            http://eistee82.github.io/ta_simv2/icon.png
+// @updateURL       https://github.com/Eistee82/CNCTA/raw/master/WarChiefs_-_Tiberium_Alliances_Combat_Simulator.user.js
+// @downloadURL     https://github.com/Eistee82/CNCTA/raw/master/WarChiefs_-_Tiberium_Alliances_Combat_Simulator.user.js
 // ==/UserScript==
 /**
  *  License: CC-BY-NC-SA 3.0
@@ -910,7 +903,7 @@
                                 Repair: {
                                     container: new qx.ui.container.Composite(new qx.ui.layout.VBox()).set({width: 65, padding: 5, allowGrowX: true, marginLeft: 0, marginRight: 0, decorator: "pane-light-opaque"}),
                                     Storage:   new qx.ui.basic.Label("-").set({alignX: "right", alignY: "middle"}),
-                                    Overall:   new qx.ui.basic.Label("-").set({alignX: "right", alignY: "middle"}),
+                                    Overall:   new qx.ui.basic.Label("-").set({alignX: "right", alignY: "middle", rich: true}),
                                     Inf:       new qx.ui.basic.Label("-").set({alignX: "right", alignY: "middle"}),
                                     Vehi:      new qx.ui.basic.Label("-").set({alignX: "right", alignY: "middle"}),
                                     Air:       new qx.ui.basic.Label("-").set({alignX: "right", alignY: "middle"})
@@ -1123,7 +1116,7 @@
                                     switch (localStorage['getRTSelection']) {
                                     case "cry":
                                         //Repair.Overall
-                                        this.Label.Repair.Overall.setValue(phe.cnc.gui.util.Numbers.formatNumbersCompact(this.Stats.Repair.Overall.Cry));
+                                        this.Label.Repair.Overall.setValue("<span style=\"text-shadow: 0 0 3pt;\">" + phe.cnc.gui.util.Numbers.formatNumbersCompact(this.Stats.Repair.Overall.Cry) + "</span>");
                                         this.Label.Repair.Overall.setToolTipText(qxApp.tr("tnf:repair points") + ": " + formatTime(this.Stats.Repair.Overall.RT) + "</br>" + qxApp.tr("tnf:health") + ": " + this.Stats.Repair.Overall.getHP().toFixed(2) + "%");
                                         //Repair.Inf
                                         this.Label.Repair.Inf.setValue(phe.cnc.gui.util.Numbers.formatNumbersCompact(this.Stats.Repair.Inf.Cry));
@@ -1137,7 +1130,7 @@
                                         break;
                                     case "hp":
                                         //Repair.Overall
-                                        this.Label.Repair.Overall.setValue(this.Stats.Repair.Overall.getHP().toFixed(2) + "%");
+                                        this.Label.Repair.Overall.setValue("<span style=\"text-shadow: 0 0 3pt;\">" + this.Stats.Repair.Overall.getHP().toFixed(2) + "%</span>");
                                         this.Label.Repair.Overall.setToolTipText(qxApp.tr("tnf:repair points") + ": " + formatTime(this.Stats.Repair.Overall.RT) + "</br>" + qxApp.tr("tnf:crystals") + ": " + phe.cnc.gui.util.Numbers.formatNumbersCompact(this.Stats.Repair.Overall.Cry));
                                         //Repair.Inf
                                         this.Label.Repair.Inf.setValue(this.Stats.Repair.Inf.getHP().toFixed(2) + "%");
@@ -1151,7 +1144,7 @@
                                         break;
                                     case "hp rel":
                                         //Repair.Overall
-                                        this.Label.Repair.Overall.setValue(this.Stats.Repair.Overall.getHPrel().toFixed(2) + "%");
+                                        this.Label.Repair.Overall.setValue("<span style=\"text-shadow: 0 0 3pt;\">" + this.Stats.Repair.Overall.getHPrel().toFixed(2) + "%</span>");
                                         this.Label.Repair.Overall.setToolTipText(qxApp.tr("tnf:repair points") + ": " + formatTime(this.Stats.Repair.Overall.RT) + "</br>" + qxApp.tr("tnf:crystals") + ": " + phe.cnc.gui.util.Numbers.formatNumbersCompact(this.Stats.Repair.Overall.Cry));
                                         //Repair.Inf
                                         this.Label.Repair.Inf.setValue(this.Stats.Repair.Inf.getHPrel().toFixed(2) + "%");
@@ -1165,7 +1158,7 @@
                                         break;
                                     default: //"rt"
                                         //Repair.Overall
-                                        this.Label.Repair.Overall.setValue(formatTime(this.Stats.Repair.Overall.RT));
+                                        this.Label.Repair.Overall.setValue("<span style=\"text-shadow: 0 0 3pt;\">" + formatTime(this.Stats.Repair.Overall.RT) + "</span>");
                                         this.Label.Repair.Overall.setToolTipText(qxApp.tr("tnf:crystals") + ": " + phe.cnc.gui.util.Numbers.formatNumbersCompact(this.Stats.Repair.Overall.Cry) + "</br>" + qxApp.tr("tnf:health") + ": " + this.Stats.Repair.Overall.getHP().toFixed(2) + "%");
                                         //Repair.Inf
                                         this.Label.Repair.Inf.setValue(formatTime(this.Stats.Repair.Inf.RT));
